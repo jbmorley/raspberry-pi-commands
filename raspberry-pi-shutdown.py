@@ -17,11 +17,12 @@ def exit_handler():
 def main():
     parser = argparse.ArgumentParser(description="Raspberry Pi shutdown utility.")
     parser.add_argument("--dry-run", action="store_true", default=False, help="dry run only")
+    parser.add_argument("--pin", type=int, default=GPIO_PIN, help="GPIO pin (defaults to %s)" % (GPIO_PIN, ))
     options = parser.parse_args()
     
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(GPIO_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.wait_for_edge(GPIO_PIN, GPIO.FALLING)
+    GPIO.setup(options.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.wait_for_edge(options.pin, GPIO.FALLING)
 
     print("Shutting down...")
     if not options.dry_run:
