@@ -1,17 +1,13 @@
-# raspberry-pi-shutdown
+# raspberry-pi-commands
 
-Simple script to monitor Raspberry Pi GPIO pins for shutdown command
+Simple script to monitor Raspberry Pi GPIO pins and run commands
 
 ## Usage
 
-Add the script to crontab. For example,
+To add a shutdown button by running `raspberry-pi-commands.py` on reboot, adding the following to your crontab:
 
 ```bash
-@reboot /usr/bin/sudo /usr/bin/python3 /home/pi/Projects/raspberry-pi-shutdown/raspberry-pi-shutdown.py
-```
-
-By default, `raspberry-pi-shutdown` monitors pin #21, but you can customise the GPIO pin used as follows:
-
-```bash
-@reboot /usr/bin/sudo /usr/bin/python3 /home/pi/Projects/raspberry-pi-shutdown/raspberry-pi-shutdown.py --pin 17
+@reboot /usr/bin/python3 \
+	/home/pi/Projects/raspberry-pi-shutdown/raspberry-pi-commands.py \
+	--pin 21 --command "sync; sudo shutdown"
 ```
