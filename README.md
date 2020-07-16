@@ -9,5 +9,5 @@ To add a shutdown button by running `raspberry-pi-commands.py` on reboot, adding
 ```bash
 @reboot /usr/bin/python3 \
 	/home/pi/Projects/raspberry-pi-commands/raspberry-pi-commands.py \
-	--pin 21 --command "sync; sudo shutdown"
+	--on 21 --command "sync; sudo shutdown"
 ```
